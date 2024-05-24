@@ -11,7 +11,7 @@ column_names = ['權證代碼', '權證名稱','買價','買量','賣價','賣�
   'Delta', 'Theta', '流通<BR>在外(%)']
 
 #必須先將下載項目中的OutXLLS.xlsx移動到此資料夾
-excel = pd.read_excel('OutXLS_processed.xlsx')
+excel = pd.read_excel('OutXLS_pro.xlsx')
 data_list = excel.values.tolist()
 
 # 使用sqlite3連線/創建資料庫

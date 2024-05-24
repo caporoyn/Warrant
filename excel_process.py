@@ -1,13 +1,12 @@
 import time
 import sqlite3
-import pandas as pd
 import json
 import csv
 import openpyxl
 import os
 import subprocess
 import pyautogui
-
+import shutil
 
 def open_and_save_with_numbers(input_file, input_file2):
     
@@ -25,7 +24,9 @@ def open_and_save_with_numbers(input_file, input_file2):
         time.sleep(3)
         pyautogui.click()
         pyautogui.hotkey('command', 's')
-        time.sleep(1)
+        time.sleep(2)
+        pyautogui.typewrite('OutXLS', interval = 0.1)
+        time.sleep(2)
         pyautogui.press('enter')
         time.sleep(2)
         pyautogui.hotkey('command', 'w')
@@ -53,19 +54,23 @@ def export_numbers_to_excel(input_file, output_file):
     pyautogui.press('enter', interval = 0.2)
     pyautogui.press('enter', interval = 0.2)
     time.sleep(3)
-    pyautogui.typewrite('OutXLS_processed', interval = 0.1)
+    pyautogui.typewrite('OutXLS_pro', interval = 0.15)
     time.sleep(3)
     pyautogui.press('enter')
     pyautogui.hotkey('command', 'w')
     
 
 if __name__ == "__main__":
-    input_file = 'OutXLS.xlsx'
-    input_file2 = 'OutXLS.numbers'
-    output_file = 'OutXLS_processed.xlsx'
+    #資料夾預設為在Download中，若需要可自行修改路徑
+    input_file = '/Path/To/Downloads/OutXLS.xlsx'
+    input_file2 = '/Path/To/Downloads/OutXLS.numbers'
+    output_file = '/Path/To/Downloads/OutXLS_pro.xlsx'
     
+    if os.path.exists("OutXLS_pro.xlsx"):
+        os.remove("OutXLS_pro.xlsx")
     open_and_save_with_numbers(input_file,input_file2)
     time.sleep(2)
     export_numbers_to_excel(input_file2, output_file)
-
+    time.sleep(2)
+    shutil.move(output_file, os.getcwd())
 

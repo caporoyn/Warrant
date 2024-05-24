@@ -9,9 +9,6 @@ import sqlite3
 import json
 import sys
 
-Path = "../Downloads/chromedriver-mac-arm64/chromedriver.exe"
-driver = webdriver.Chrome()
-
 class Input_data:
     def __init__(self, stock_id = '2330', warType = '全部', issuers = '全部',
                strikePrice_L = '', strikePrice_R = '', bsRate = '全部',
@@ -39,6 +36,10 @@ class Input_data:
 
 # stock_id = sys.argv[1]
 stock_id = input("請輸入股票代號：")
+
+
+Path = "../Downloads/chromedriver-mac-arm64/chromedriver.exe"
+driver = webdriver.Chrome()
 driver.get("https://warrant.kgi.com/edwebsite/views/warrantsearch/warrantsearch.aspx")
 time.sleep(1)
 
